@@ -1,0 +1,13 @@
+{
+    "potions": [
+        {
+            "id": 0,
+            "name": "Eldyrflower",
+            "price": 10,
+            "ingredients": ["x", "y", "z"],
+            "image": "https://simplybeyondherbs.com/wp-content/uploads/2020/07/Elderflower-liqueur-profile.jpg",
+            "description": "A potion used to restore health.",
+            "cost": 5
+        }
+    ]    
+}

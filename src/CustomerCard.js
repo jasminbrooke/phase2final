@@ -1,8 +1,8 @@
 import React from "react";
 import { Button, Card, Image, Icon } from 'semantic-ui-react'
 
-const CustomerCard = ({customer: {name:{title, first, last}, dob: {age}, picture: {large, medium, thumbnail}}}) => {
-    return (
+const CustomerCard = ({customer: {name:{title, first, last}, dob: {age}, picture: {large, medium, thumbnail}}, potions}) => {
+  return (
         <Card>
             <Card.Content>
         <Image
@@ -13,7 +13,7 @@ const CustomerCard = ({customer: {name:{title, first, last}, dob: {age}, picture
         <Card.Header>{title} {first} {last}</Card.Header>
         <Card.Meta>{age}</Card.Meta>
         <Card.Description>
-          REQUEST
+          <Icon name="lab"/>{potions[Math.floor(Math.random() * potions.length)].name}
         </Card.Description>
       </Card.Content>
       <Card.Content extra>
