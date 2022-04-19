@@ -3,11 +3,20 @@ import './App.css';
 import CustomerList from "./CustomerList";
 import PotionList from "./PotionList";
 import NewPotion from "./NewPotion";
-import NavBar from "./NavBar";
-// import { BrowerRouter, Route, Switch } from "react-router-dom";
+import CustomerCard from "./CustomerCard";
+import PotionCard from "./PotionCard";
 
 function App() {
   const [potions, setPotions] = useState([])
+
+  const handleForm = (newPotion) => {
+    fetch("http://localhost:3001/potions", {
+      method: 'POST',
+      headers: {'content-Type': 'application/json'},
+      body: JSON.stringify(newPotion)
+    })
+    .then(() => setPotions([...potions, newPotion]))
+  }
 
     useEffect(() => {
     fetch("http://localhost:3001/potions")
@@ -17,8 +26,10 @@ function App() {
   return (
     <div>
       <CustomerList potions={potions}/>
+      <CustomerCard />
+      <PotionCard />
       <PotionList potions={potions}/>
-      <NewPotion />
+      <NewPotion handleForm={handleForm}/>
     </div>
   );
 }
