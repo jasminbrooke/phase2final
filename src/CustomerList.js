@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Card } from 'semantic-ui-react'
 import CustomerCard from "./CustomerCard"
 
 const CustomerList = () => {
@@ -9,11 +10,11 @@ const CustomerList = () => {
         .then(data => setCustomers(data.results))
     }, [])
 
-    const customerArray = customers.slice(0, 6)
+    const customerArray = customers.slice(0, 5)
     return (
-        <div>
+        <Card.Group itemsPerRow="5">
             {customerArray.map((customer, i) => <CustomerCard key={i} customer={customer} />)}
-        </div>
+        </Card.Group>
     )
 }
 
