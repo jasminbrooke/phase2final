@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Image, Icon } from 'semantic-ui-react'
+import { Button, Card, Image, Icon } from 'semantic-ui-react'
 
 const PotionCard = ({potion: {image, name, description, ingredients}}) => {
     return (
@@ -16,7 +16,8 @@ const PotionCard = ({potion: {image, name, description, ingredients}}) => {
         </Card.Content>
         <Card.Content extra>
         <a>
-            <Icon name='lab' />
+            <Button><Icon name='lab' />Brew
+            </Button>
             {ingredients}
         </a>
         </Card.Content>
