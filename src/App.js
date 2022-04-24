@@ -38,8 +38,8 @@ function App() {
 
   return (
     <div>
-      <NavBar />
       <BrowserRouter>
+        <NavBar />
         <Switch>
           <Route exact path="/menu" element={<Menu handleForm={handleForm}/>} />   
           <Route exact path="/shopfront"
