@@ -1,20 +1,9 @@
 import React, { useState } from "react";
 import { Button, Card, Image, Icon } from 'semantic-ui-react'
  
-const PotionCard = ({potion: {id, image, name, cost, description, ingredients, inventory}}) => {
-    const [stock, setStock] = useState(inventory)
-    const [budget, setBudget] = useState(100)
-
-
-    const handleBrew = () => {
-        fetch(`http://localhost:3001/potions/${id}`, {
-          method: 'PATCH',
-          headers: {'content-Type': 'application/json'},
-          body: JSON.stringify({inventory: stock + 1})
-        })
-        .then(() => setStock(stock + 1))
-        .then(() => setBudget(budget - cost))
-      }
+const PotionCard = ({potion, handleBrew}) => {
+    const {id, image, name, cost, description, ingredients, inventory} = potion
+    // const [budget, setBudget] = useState(100)
 
     return (
         <Card>
@@ -30,9 +19,9 @@ const PotionCard = ({potion: {id, image, name, cost, description, ingredients, i
         </Card.Content>
         <Card.Content extra>
         <a>
-            <Button onClick={() => handleBrew()}><Icon name='lab' />Brew
+            <Button onClick={() => handleBrew(potion)}><Icon name='lab' />Brew
             </Button>
-            {ingredients} {stock}
+            {ingredients} {inventory}
         </a>
         </Card.Content>
         </Card>

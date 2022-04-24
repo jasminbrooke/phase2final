@@ -1,10 +1,10 @@
 import React from "react";
 
-const NavBar = () => {
+const Store = () => {
     return (
         <div>
         </div>
     )
 }
 
-export default NavBar
+export default Store

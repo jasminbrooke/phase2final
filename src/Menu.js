@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const NewPotion = ({handleForm}) => {
+const Menu = ({handleForm}) => {
     const [name, setName] = useState('')
     const [image, setImage] = useState('')
 
@@ -11,7 +11,7 @@ const NewPotion = ({handleForm}) => {
 
   return (
     <div className="container">
-      <form className="add-toy-form" onSubmit={(e) => handleSubmit(e)}>
+      <form onSubmit={(e) => handleSubmit(e)}>
         <h3>Create a Potion!</h3>
         <input
           type="text"
@@ -40,4 +40,4 @@ const NewPotion = ({handleForm}) => {
   );
 }
 
-export default NewPotion
+export default Menu

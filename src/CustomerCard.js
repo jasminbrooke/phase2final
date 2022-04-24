@@ -1,18 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button, Card, Image, Icon } from 'semantic-ui-react'
 
-const CustomerCard = ({customer: {name:{title, first, last}, dob: {age}, picture: {large, medium, thumbnail}}, potions}) => {
-  
-  // const handleSale = () => {
-  //   fetch(`http://localhost:3001/potions/${id}`, {
-  //       method: 'PATCH',
-  //       headers: {'content-Type': 'application/json'},
-  //       body: JSON.stringify({inventory: stock - 1})
-  //     })
-  //     .then(() => setStock(stock - 1))
-  //     .then(() => setBudget(budget + potions.cost))
-  // }
-  
+const CustomerCard = ({customer: {name:{title, first, last}, dob: {age}, picture: {large, medium, thumbnail}}, potion, handleSale}) => {
   return (
         <Card>
             <Card.Content>
@@ -24,14 +13,12 @@ const CustomerCard = ({customer: {name:{title, first, last}, dob: {age}, picture
         <Card.Header>{title} {first} {last}</Card.Header>
         <Card.Meta>{age}</Card.Meta>
         <Card.Description>
-          <Icon name="lab"/>{potions[Math.floor(Math.random() * potions.length)].name}
+          <Icon name="lab"/> {potion.name}
         </Card.Description>
       </Card.Content>
       <Card.Content extra>
         <div className='ui two buttons'>
-          <Button basic color='green' 
-          // onClick={() => handleSale()}
-          >
+          <Button basic color='green' onClick={() => handleSale(potion)}>
             <Icon name="check"/>
           </Button>
           <Button basic color='red'>
