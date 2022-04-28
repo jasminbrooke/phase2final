@@ -1,27 +1,41 @@
 import React, { useState } from "react";
 import { Button, Card, Image, Icon } from 'semantic-ui-react'
  
-const PotionCard = ({potion, handleBrew}) => {
+const PotionCard = ({budget, potion, handleBrew, discontinuePotion}) => {
     const {id, image, name, cost, description, ingredients, inventory} = potion
+    const [disabled, setDisabled] = useState(false)
+ 
     // const [budget, setBudget] = useState(100)
+
+
+    const handleClick = (potion) => {
+        if (potion.cost < budget) {
+        handleBrew(potion)
+        setDisabled('disabled')
+        setTimeout(() => { setDisabled(false)}, 3000)
+        } else {
+            alert("Not enough money!")
+        }
+    }
 
     return (
         <Card>
         <Image src={image} wrapped ui={false} />
         <Card.Content>
-        <Card.Header>{name}</Card.Header>
+        <Card.Header>{id} {name}</Card.Header>
         <Card.Meta>
-            <span className='date'>Joined in 2015</span>
+            <span className='cost'>${cost}</span>
         </Card.Meta>
         <Card.Description>
-            {description}
+            {description} {ingredients} {inventory}
+
         </Card.Description>
         </Card.Content>
         <Card.Content extra>
         <a>
-            <Button onClick={() => handleBrew(potion)}><Icon name='lab' />Brew
+            <Button className="btn btn-bubble" disabled={disabled} onClick={() => handleClick(potion)}><Icon name='lab' />Brew
             </Button>
-            {ingredients} {inventory}
+            <Button onClick={() => discontinuePotion(potion)}>Discontinue</Button>
         </a>
         </Card.Content>
         </Card>

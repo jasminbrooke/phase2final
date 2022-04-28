@@ -9,16 +9,27 @@ import Store from "./Store";
 
 function App() {
   const [potions, setPotions] = useState([])
+  const [budget, setBudget] = useState(100)
+
 
   const handleSale = (requestedPotion) => {
     const updatedPotions = potions.map(potion => potion.id === requestedPotion.id ? {...potion, inventory: potion.inventory - 1} : potion)
     setPotions(updatedPotions)
-    // .then(() => setBudget(budget + potions.cost))
+    setBudget(budget + requestedPotion.price)
+  }
+
+  const discontinuePotion = (potion) => {
+    fetch(`http://localhost:3001/potions/${potion.id}`, {
+    method: "DELETE",
+    headers: {'Content-type': 'application/json'}
+    })
+    .then(() => setPotions(potions.filter(p => p.id !== potion.id)))
   }
 
   const handleBrew = (requestedPotion) => {
     const updatedPotions = potions.map(potion => potion.id === requestedPotion.id ? {...potion, inventory: potion.inventory + 1} : potion)
     setPotions(updatedPotions)
+    setBudget(budget - requestedPotion.cost)
   }
 
   const handleForm = (newPotion) => {
@@ -27,13 +38,17 @@ function App() {
       headers: {'content-Type': 'application/json'},
       body: JSON.stringify(newPotion)
     })
-    .then(() => setPotions([...potions, newPotion]))
+    .then(() => getPotions())
   }
 
-  useEffect(() => {
+  const getPotions = () => {
     fetch("http://localhost:3001/potions")
     .then(r => r.json())
     .then(data => setPotions(data)) 
+  }
+
+  useEffect(() => {
+    getPotions()
   }, [])
 
   return (
@@ -41,17 +56,34 @@ function App() {
       <BrowserRouter>
         <NavBar />
         <Switch>
-          <Route exact path="/menu" element={<Menu handleForm={handleForm}/>} />   
+          <Route exact path="/menu"
+            element={
+              <Menu 
+                potions={potions} 
+                handleForm={handleForm}
+                getPotions={getPotions}
+                discontinuePotion={discontinuePotion}
+              />
+            } 
+          />   
           <Route exact path="/shopfront"
             element={
               <Shopfront 
                 handleSale={handleSale}
                 handleBrew={handleBrew}
+                discontinuePotion={discontinuePotion}
                 potions={potions}
+                budget={budget}
               />
             }
           />
-          <Route exact path="/store" element={<Store />}/>
+          <Route exact path="/store" 
+            element={
+              <Store 
+                budget={budget}
+              />
+            }
+          />
           <Route exact path="/" element={ <Intro />}/>
         </Switch>
       </BrowserRouter>

@@ -3,10 +3,10 @@ import { Card } from 'semantic-ui-react'
 import PotionCard from "./PotionCard";
 
 
-const PotionList = ({potions, handleBrew}) => {
+const PotionList = ({budget, potions, handleBrew, discontinuePotion}) => {
     return (
         <Card.Group itemsPerRow="4">
-            {potions.map((potion, i) => <PotionCard handleBrew={handleBrew} key={i} potion={potion} />)}
+            {potions.map((potion, i) => <PotionCard discontinuePotion={discontinuePotion} handleBrew={handleBrew} potion={potion} budget={budget} key={i}/>)}
         </Card.Group>
     )
 }

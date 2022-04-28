@@ -1,17 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, Component } from "react";
+import { Form, Message, Card, Button } from 'semantic-ui-react'
 
-const Menu = ({handleForm}) => {
-    const [name, setName] = useState('')
-    const [image, setImage] = useState('')
+const Menu = ({ handleForm, potions, discontinuePotion, getPotions }) => {
+  const [name, setName] = useState('Potion')
+  const [image, setImage] = useState('https://images-na.ssl-images-amazon.com/images/I/31GiArYZI5L.jpg')
+  const [cost, setCost] = useState(0)
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleForm({name, image, cost: 0})
+    handleForm({ name, image, cost: 5, price: 10, inventory: 0 })
   }
 
   return (
-    <div className="container">
-      <form onSubmit={(e) => handleSubmit(e)}>
+    <div className="center">
+      <div>
+        <Card>
+          <ul>
+            {potions.map((potion, i) => (
+              <li key={i}> {potion.id} {potion.name} ${potion.price}
+                <button onClick={() => discontinuePotion(potion)}> X </button>
+              </li>
+            ))}
+          </ul>
+        </Card>
+      </div>
+      <Form widths='equal' onSubmit={(e) => handleSubmit(e)}>
         <h3>Create a Potion!</h3>
         <input
           type="text"
@@ -19,8 +33,7 @@ const Menu = ({handleForm}) => {
           placeholder="Name your potion..."
           className="input-text"
           onChange={(e) => setName(e.target.value)}
-          />
-        <br />
+        />
         <input
           type="text"
           name="image"
@@ -28,14 +41,20 @@ const Menu = ({handleForm}) => {
           className="input-text"
           onChange={(e) => setImage(e.target.value)}
         />
-        <br />
+        <input
+          type="text"
+          name="cost"
+          placeholder="Name your price..."
+          className="input-text"
+          onChange={(e) => setCost(e.target.value)}
+        />
         <input
           type="submit"
           name="submit"
-          value="Brew New Potion"
+          value="Create New Potion Menu Item"
           className="submit"
         />
-      </form>
+      </Form>
     </div>
   );
 }

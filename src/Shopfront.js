@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import CustomerList from "./CustomerList";
 import PotionList from "./PotionList";
 
-const Shopfront = ({handleBrew, handleSale, potions}) => {
+const Shopfront = ({budget, handleBrew, handleSale, potions, discontinuePotion}) => {
     return (
-        <>
+        <div className="center2">
             <CustomerList handleSale={handleSale} potions={potions}/>
-            <PotionList potions={potions} handleBrew={handleBrew}/>
-        </>
+            <br></br>
+            <div className="center"><h2>Budget: ${budget}</h2></div>
+            <PotionList potions={potions} handleBrew={handleBrew} discontinuePotion={discontinuePotion} budget={budget}/>
+        </div>
     )
 }
 

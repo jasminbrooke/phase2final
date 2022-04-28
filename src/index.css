@@ -11,3 +11,41 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.center {
+  text-align: center;
+  margin: auto;
+  width: 60%;
+  border: 5px solid #000000;
+  padding: 10px;
+  }
+
+  .center2 {
+    margin: auto;
+    width: 90%;
+    border: 2px solid #000000;
+    padding: 10px;
+    }
+    
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      padding: 1em 2em;
+    }
+
+    .btn-bubble {
+      color: white;
+      background-color: #77b11c;
+      background-repeat: no-repeat;
+   }
+    .btn-bubble:hover, .btn-bubble:focus {
+      animation: bubbles 1s forwards ease-out;
+      background: radial-gradient(circle at center, transparent 30%, #eef 60%, #eef 65%, transparent 70%) 1% 57% / 0.42em 0.42em, radial-gradient(circle at center, transparent 30%, #eef 60%, #eef 65%, transparent 70%) 1% 62% / 0.09em 0.09em, radial-gradient(circle at center, transparent 30%, #eef 60%, #eef 65%, transparent 70%) 1% 49% / 0.38em 0.38em, radial-gradient(circle at center, transparent 30%, #eef 60%, #eef 65%, transparent 70%) 1% 34% / 0.06em 0.06em, radial-gradient(circle at center, transparent 30%, #eef 60%, #eef 65%, transparent 70%) 1% 58% / 0.45em 0.45em, radial-gradient(circle at center, transparent 30%, #eef 60%, #eef 65%, transparent 70%) 1% 40% / 0.5em 0.5em, radial-gradient(circle at center, transparent 30%, #eef 60%, #eef 65%, transparent 70%) 1% 19% / 0.24em 0.24em, radial-gradient(circle at center, transparent 30%, #eef 60%, #eef 65%, transparent 70%) 1% 4% / 0.2em 0.2em, radial-gradient(circle at center, transparent 30%, #eef 60%, #eef 65%, transparent 70%) 1% 69% / 0.32em 0.32em, radial-gradient(circle at center, transparent 30%, #eef 60%, #eef 65%, transparent 70%) 1% 16% / 0.13em 0.13em, radial-gradient(circle at center, transparent 30%, #eef 60%, #eef 65%, transparent 70%) 1% 36% / 0.04em 0.04em;
+      background-color: #77b11c;
+      background-repeat: no-repeat;
+   }
+    @keyframes bubbles {
+      100% {
+        background-position: 20% 1%, 2% 1%, 2% 1%, 32% 1%, 2% 1%, 2% -111%, 2% 1%, 2% 5%, 2% 134%, 2% 1%, 2% -15%;
+        box-shadow: inset 0 -6.5em 0 #0072c4;
+      }}
