@@ -19,7 +19,7 @@ const Menu = ({ handleForm, potions, discontinuePotion, getPotions }) => {
         <Card>
           <ul>
             {potions.map((potion, i) => (
-              <li key={i}> {potion.id} {potion.name} ${potion.price}
+              <li key={i}> {potion.name} ${potion.price}
                 { potion.id !== 0 && <button onClick={() => discontinuePotion(potion)}> X </button> }
               </li>
             ))}

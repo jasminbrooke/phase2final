@@ -2,12 +2,25 @@
   "potions": [
     {
       "id": 0,
-      "name": "Eldyrflower",
+      "name": "Eldyrflower Potion",
       "price": 10,
       "image": "https://simplybeyondherbs.com/wp-content/uploads/2020/07/Elderflower-liqueur-profile.jpg",
       "description": "A potion used to restore health.",
       "cost": 5,
-      "inventory": 27
+      "inventory": 100
+    },
+    {
+      "name": "Potion",
+      "image": "https://images-na.ssl-images-amazon.com/images/I/31GiArYZI5L.jpg",
+      "cost": 5,
+      "price": 0,
+      "inventory": 100,
+      "id": 1
     }
+  ],
+  "characterClass": [
+    "knight",
+    "wizard",
+    "rogue"
   ]
 }

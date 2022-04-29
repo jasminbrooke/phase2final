@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import CustomerList from "./CustomerList";
 import PotionList from "./PotionList";
 
-const Shopfront = ({budget, handleBrew, handleSale, potions, discontinuePotion}) => {
+const Shopfront = ({budget, handleBrew, handleSale, potions, discontinuePotion, customerArray}) => {
     return (
         <div className="center2">
-            <CustomerList handleSale={handleSale} potions={potions}/>
+            <CustomerList handleSale={handleSale} potions={potions} customerArray={customerArray}
+/>
             <br></br>
             <div className="center"><h2>Budget: ${budget}</h2></div>
             <PotionList potions={potions} handleBrew={handleBrew} discontinuePotion={discontinuePotion} budget={budget}/>
