@@ -8,7 +8,6 @@ function NavBar() {
         <Menu.Item to="/" exact as={NavLink} name="Intro" />
         <Menu.Item to="/menu" exact as={NavLink} name="Menu" />
         <Menu.Item to="/shopfront" exact as={NavLink} name="Shop Front" />
-        <Menu.Item to="/store" exact as={NavLink} name="Store" />
     </Menu>
   )
 }

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Card, Image, Icon } from 'semantic-ui-react'
  
 const PotionCard = ({budget, potion, handleBrew, discontinuePotion}) => {
-    const {id, image, name, cost, description, ingredients, inventory} = potion
+    const {id, image, name, cost, description, inventory} = potion
     const [disabled, setDisabled] = useState(false)
  
     // const [budget, setBudget] = useState(100)
@@ -27,15 +27,27 @@ const PotionCard = ({budget, potion, handleBrew, discontinuePotion}) => {
             <span className='cost'>${cost}</span>
         </Card.Meta>
         <Card.Description>
-            {description} {ingredients} {inventory}
+            {description} {inventory}
 
         </Card.Description>
         </Card.Content>
         <Card.Content extra>
         <a>
-            <Button className="btn btn-bubble" disabled={disabled} onClick={() => handleClick(potion)}><Icon name='lab' />Brew
+            <Button id="gooey-button" disabled={disabled} onClick={() => handleClick(potion)}><Icon name='lab' />Brew
+            <span className="bubbles">
+            <span className="bubble"></span>
+            <span className="bubble"></span>
+            <span className="bubble"></span>
+            <span className="bubble"></span>
+            <span className="bubble"></span>
+            <span className="bubble"></span>
+            <span className="bubble"></span>
+            <span className="bubble"></span>
+            <span className="bubble"></span>
+            <span className="bubble"></span>
+            </span>
             </Button>
-            <Button onClick={() => discontinuePotion(potion)}>Discontinue</Button>
+            {id !== 0  && <Button onClick={() => discontinuePotion(potion)}>Discontinue</Button>}
         </a>
         </Card.Content>
         </Card>

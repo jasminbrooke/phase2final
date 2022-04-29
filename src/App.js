@@ -5,12 +5,10 @@ import Menu from "./Menu";
 import NavBar from "./NavBar";
 import Shopfront from "./Shopfront";
 import Intro from "./Intro";
-import Store from "./Store";
 
 function App() {
   const [potions, setPotions] = useState([])
   const [budget, setBudget] = useState(100)
-
 
   const handleSale = (requestedPotion) => {
     const updatedPotions = potions.map(potion => potion.id === requestedPotion.id ? {...potion, inventory: potion.inventory - 1} : potion)
@@ -73,13 +71,6 @@ function App() {
                 handleBrew={handleBrew}
                 discontinuePotion={discontinuePotion}
                 potions={potions}
-                budget={budget}
-              />
-            }
-          />
-          <Route exact path="/store" 
-            element={
-              <Store 
                 budget={budget}
               />
             }

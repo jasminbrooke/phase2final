@@ -1,5 +1,6 @@
 import React, { useState, Component } from "react";
 import { Form, Message, Card, Button } from 'semantic-ui-react'
+import PotionCard from "./PotionCard";
 
 const Menu = ({ handleForm, potions, discontinuePotion, getPotions }) => {
   const [name, setName] = useState('Potion')
@@ -19,7 +20,7 @@ const Menu = ({ handleForm, potions, discontinuePotion, getPotions }) => {
           <ul>
             {potions.map((potion, i) => (
               <li key={i}> {potion.id} {potion.name} ${potion.price}
-                <button onClick={() => discontinuePotion(potion)}> X </button>
+                { potion.id !== 0 && <button onClick={() => discontinuePotion(potion)}> X </button> }
               </li>
             ))}
           </ul>
