@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Card, Image, Icon } from 'semantic-ui-react'
  
 const PotionCard = ({budget, potion, handleBrew, discontinuePotion}) => {
-    const {id, image, name, cost, description, inventory} = potion
+    const {id, image, name, cost, description, inventory, price} = potion
     const [disabled, setDisabled] = useState(false)
  
     // const [budget, setBudget] = useState(100)
@@ -20,15 +20,14 @@ const PotionCard = ({budget, potion, handleBrew, discontinuePotion}) => {
 
     return (
         <Card>
-        <Image src={image} wrapped ui={false} />
+        <Image src={image} size='small' wrapped ui={false} />
         <Card.Content>
-        <Card.Header>{id} {name}</Card.Header>
+        <Card.Header> {name}</Card.Header>
         <Card.Meta>
-            <span className='cost'>${cost}</span>
+            <span className='cost'>In Stock: {inventory}</span>
         </Card.Meta>
         <Card.Description>
-            {description} {inventory}
-
+            {description} Costs ${cost} to brew. Can be sold for ${price}.
         </Card.Description>
         </Card.Content>
         <Card.Content extra>

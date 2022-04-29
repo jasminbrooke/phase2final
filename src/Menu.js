@@ -1,16 +1,16 @@
-import React, { useState, Component } from "react";
-import { Form, Message, Card, Button } from 'semantic-ui-react'
+import React, { useState } from "react";
+import { Form, Input, Card } from 'semantic-ui-react'
 import PotionCard from "./PotionCard";
 
 const Menu = ({ handleForm, potions, discontinuePotion, getPotions }) => {
   const [name, setName] = useState('Potion')
   const [image, setImage] = useState('https://images-na.ssl-images-amazon.com/images/I/31GiArYZI5L.jpg')
-  const [cost, setCost] = useState(0)
+  const [price, setPrice] = useState(0)
 
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleForm({ name, image, cost: 5, price: 10, inventory: 0 })
+    handleForm({ name, image, cost: 5, price, inventory: 0 })
   }
 
   return (
@@ -28,27 +28,36 @@ const Menu = ({ handleForm, potions, discontinuePotion, getPotions }) => {
       </div>
       <Form widths='equal' onSubmit={(e) => handleSubmit(e)}>
         <h3>Create a Potion!</h3>
-        <input
-          type="text"
-          name="name"
-          placeholder="Name your potion..."
-          className="input-text"
-          onChange={(e) => setName(e.target.value)}
-        />
-        <input
+        <Form.Field required>
+          <label>Name</label>
+          <Input
+            type="text"
+            name="name"
+            placeholder="Name your potion..."
+            className="input-text"
+            onChange={(e) => setName(e.target.value)}
+          />
+        </Form.Field>
+        <Form.Field required>
+          <label>Image</label>
+        <Input
           type="text"
           name="image"
           placeholder="Enter a potion's image URL..."
           className="input-text"
           onChange={(e) => setImage(e.target.value)}
         />
-        <input
+          </Form.Field>
+          <Form.Field required>
+          <label>Price</label>
+        <Input
           type="text"
-          name="cost"
-          placeholder="Name your price..."
+          name="price"
+          placeholder="Name your price to make a profit..."
           className="input-text"
-          onChange={(e) => setCost(e.target.value)}
+          onChange={(e) => setPrice(e.target.value)}
         />
+        </Form.Field>
         <input
           type="submit"
           name="submit"

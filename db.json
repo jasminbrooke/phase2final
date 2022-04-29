@@ -8,14 +8,6 @@
       "description": "A potion used to restore health.",
       "cost": 5,
       "inventory": 27
-    },
-    {
-      "name": "Potion",
-      "image": "https://images-na.ssl-images-amazon.com/images/I/31GiArYZI5L.jpg",
-      "cost": 5,
-      "price": 10,
-      "inventory": 0,
-      "id": 1
     }
   ]
 }
