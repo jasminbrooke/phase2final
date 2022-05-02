@@ -8,6 +8,24 @@
       "description": "A potion used to restore health.",
       "cost": 5,
       "inventory": 100
+    },
+    {
+      "name": "Potion",
+      "image": "Elderberry",
+      "cost": 5,
+      "price": 0,
+      "inventory": 0,
+      "id": 1
+    },
+    {
+      "name": "Potion",
+      "image": {
+        "empty": "/static/media/empty.02da33cc.png"
+      },
+      "cost": 5,
+      "price": 0,
+      "inventory": 0,
+      "id": 2
     }
   ],
   "characterClass": [

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Input, Card, Dropdown, Button, Grid, Popup } from 'semantic-ui-react'
+import { Form, Input, Card, Dropdown, Button, Grid, Popup, Image } from 'semantic-ui-react'
 import Dandelion from "./assets/Dandelion.jpg"
 import Echinacea from "./assets/Echinacea.jpg"
 import Elderberry from "./assets/Elderberry.jpg"
@@ -59,7 +59,7 @@ const Menu = ({ handleForm, potions, discontinuePotion, getPotions }) => {
     {image: { avatar: true, src: Rosemary },
     key: '8',
     text: 'x',
-    value: 'Yarrow'
+    value: 'Rosemary'
 },
   ]
 
@@ -123,6 +123,30 @@ const Menu = ({ handleForm, potions, discontinuePotion, getPotions }) => {
           className="submit"
         />
       </Form>
+
+
+
+            <div>
+            <Popup wide trigger={
+            <Image size= 'tiny' src={empty} />} on='click'>
+              <Grid divided columns='equal'>
+                <Grid.Column>
+                    <Image size= 'tiny' src={Echinacea} fluid />
+                    <Image size= 'tiny' src={Rosemary} fluid />
+                    <Image size= 'tiny' src={Yarrow} fluid />
+                    <Image size= 'tiny' src={Elderberry} fluid />
+                  </Grid.Column>
+                  <Grid.Column>
+                    <Image size= 'tiny' src={Dandelion} fluid />
+                    <Image size= 'tiny' src={Lavender} fluid />
+                    <Image size= 'tiny' src={Rosehip} fluid />
+                    <Image size= 'tiny' src={Lilac} fluid />
+                  </Grid.Column>
+              </Grid>
+            </Popup>
+            </div>
+
+
     </div>
   );
 }
