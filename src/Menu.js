@@ -1,11 +1,67 @@
 import React, { useState } from "react";
-import { Form, Input, Card } from 'semantic-ui-react'
-import PotionCard from "./PotionCard";
+import { Form, Input, Card, Dropdown, Button, Grid, Popup } from 'semantic-ui-react'
+import Dandelion from "./assets/Dandelion.jpg"
+import Echinacea from "./assets/Echinacea.jpg"
+import Elderberry from "./assets/Elderberry.jpg"
+import Lavender from "./assets/Lavender.jpg"
+import Rosehip from "./assets/Rosehip.jpg"
+import Lilac from "./assets/Lilac.jpg"
+import Yarrow from "./assets/Yarrow.jpg"
+import Rosemary from "./assets/Rosemary.jpg"
+import empty from "./assets/empty.png"
 
 const Menu = ({ handleForm, potions, discontinuePotion, getPotions }) => {
   const [name, setName] = useState('Potion')
-  const [image, setImage] = useState('https://images-na.ssl-images-amazon.com/images/I/31GiArYZI5L.jpg')
+  const [image, setImage] = useState({empty})
   const [price, setPrice] = useState(0)
+
+  const imageOptions = [
+    {image: { avatar: true, src: empty },
+    key: '1',
+    text: 'x',
+    value: 'Empty',
+},
+    {image: { avatar: true, src: Dandelion },
+    key: '1',
+    text: 'x',
+    value: 'Dandelion',
+},
+    {image: { avatar: true, src: Echinacea },
+    key: '2',
+    text: 'x',
+    value: 'Echinacea'
+},
+    {image: { avatar: true, src: Elderberry },
+    key: '3',
+    text: 'x',
+    value: 'Elderberry'
+},
+    {image: { avatar: true, src: Lavender },
+    key: '4',
+    text: 'x',
+    value: 'Lavender'
+},
+    {image: { avatar: true, src: Rosehip },
+    key: '5',
+    text: 'x',
+    value: 'Rosehip'
+},
+    {image: { avatar: true, src: Lilac },
+    key: '6',
+    text: 'x',
+    value: 'Lilac'
+},
+    {image: { avatar: true, src: Yarrow },
+    key: '7',
+    text: 'x',
+    value: 'Yarrow'
+},
+    {image: { avatar: true, src: Rosemary },
+    key: '8',
+    text: 'x',
+    value: 'Yarrow'
+},
+  ]
 
 
   const handleSubmit = (e) => {
@@ -29,6 +85,18 @@ const Menu = ({ handleForm, potions, discontinuePotion, getPotions }) => {
       <Form widths='equal' onSubmit={(e) => handleSubmit(e)}>
         <h3>Create a Potion!</h3>
         <Form.Field required>
+          <label>Image</label>
+          <Dropdown
+            placeholder='Select Image'
+            fluid
+            selection
+            options={imageOptions}
+            onChange={(e, data) => {
+              setImage(data.value)
+            }}
+          />
+        </Form.Field>
+        <Form.Field required>
           <label>Name</label>
           <Input
             type="text"
@@ -39,24 +107,14 @@ const Menu = ({ handleForm, potions, discontinuePotion, getPotions }) => {
           />
         </Form.Field>
         <Form.Field required>
-          <label>Image</label>
-        <Input
-          type="text"
-          name="image"
-          placeholder="Enter a potion's image URL..."
-          className="input-text"
-          onChange={(e) => setImage(e.target.value)}
-        />
-          </Form.Field>
-          <Form.Field required>
           <label>Price</label>
-        <Input
-          type="text"
-          name="price"
-          placeholder="Name your price to make a profit..."
-          className="input-text"
-          onChange={(e) => setPrice(e.target.value)}
-        />
+          <Input
+            type="text"
+            name="price"
+            placeholder="Name your price to make a profit..."
+            className="input-text"
+            onChange={(e) => setPrice(e.target.value)}
+          />
         </Form.Field>
         <input
           type="submit"

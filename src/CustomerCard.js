@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { Button, Card, Image, Icon } from 'semantic-ui-react'
 
-const CustomerCard = ({customer, potions, handleSale}) => {
+const CustomerCard = ({customer, potions, handleSale, handleX}) => {
   const {name:{title, first, last}, dob: {age}, picture: {medium}} = customer
   const [potion, setPotion] = useState({})
   
   useEffect(() => {
     setPotion(potions[Math.floor(Math.random() * potions.length)])
   }, [])
-
+  
   return (
-        <Card>
-            <Card.Content>
+    <Card>
+      <Card.Content>
         <Image
           floated='right'
           size='tiny'
@@ -28,13 +28,13 @@ const CustomerCard = ({customer, potions, handleSale}) => {
           <Button basic color='green' onClick={() => handleSale(potion, customer)}>
             <Icon name="check"/>
           </Button>
-          <Button basic color='red'>
+          <Button basic color='red' onClick={() => handleX(customer)}>
             <Icon name="x" />
           </Button>
         </div>
       </Card.Content>
-        </Card>
-    )
+    </Card>
+  )
 }
 
 export default CustomerCard

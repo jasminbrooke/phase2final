@@ -12,6 +12,7 @@ function App() {
   const [customers, setCustomers] = useState([])
   const [currentIndex, setCurrentIndex] = useState(4)
   const [customerArray, setCustomerArray] = useState([])
+  const [newCustomer, setNewCustomer] = useState({})
   // const [inventory, setInventory] = useState([{id: 0, count: 5}])
 
   useEffect(() => {
@@ -40,6 +41,10 @@ function App() {
     } else {
       alert("Sold out!")
     }
+  }
+
+  const handleX = (customerID) => {
+    handleCustomer(customerID)
   }
 
   const discontinuePotion = (potion) => {
@@ -94,6 +99,7 @@ function App() {
             element={
               <Shopfront 
                 handleSale={handleSale}
+                handleX={handleX}
                 handleBrew={handleBrew}
                 discontinuePotion={discontinuePotion}
                 potions={potions}
