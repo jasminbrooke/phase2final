@@ -1,81 +1,38 @@
-import React, { useState } from "react";
-import { Form, Input, Card, Dropdown, Button, Grid, Popup, Image } from 'semantic-ui-react'
-import Dandelion from "./assets/Dandelion.jpg"
+import React, { useState, useEffect } from "react";
+import { Form, Input, Card, Grid, Popup, Image, Select } from 'semantic-ui-react'
+import Dandelion from "./assets/Dandelion.jpg" 
 import Echinacea from "./assets/Echinacea.jpg"
 import Elderberry from "./assets/Elderberry.jpg"
 import Lavender from "./assets/Lavender.jpg"
-import Rosehip from "./assets/Rosehip.jpg"
 import Lilac from "./assets/Lilac.jpg"
-import Yarrow from "./assets/Yarrow.jpg"
+import Rosehip from "./assets/Rosehip.jpg"
 import Rosemary from "./assets/Rosemary.jpg"
+import Yarrow from "./assets/Yarrow.jpg"
 import empty from "./assets/empty.png"
+
 
 const Menu = ({ handleForm, potions, discontinuePotion, getPotions }) => {
   const [name, setName] = useState('Potion')
-  const [image, setImage] = useState({empty})
-  const [price, setPrice] = useState(0)
-
-  const imageOptions = [
-    {image: { avatar: true, src: empty },
-    key: '1',
-    text: 'x',
-    value: 'Empty',
-},
-    {image: { avatar: true, src: Dandelion },
-    key: '1',
-    text: 'x',
-    value: 'Dandelion',
-},
-    {image: { avatar: true, src: Echinacea },
-    key: '2',
-    text: 'x',
-    value: 'Echinacea'
-},
-    {image: { avatar: true, src: Elderberry },
-    key: '3',
-    text: 'x',
-    value: 'Elderberry'
-},
-    {image: { avatar: true, src: Lavender },
-    key: '4',
-    text: 'x',
-    value: 'Lavender'
-},
-    {image: { avatar: true, src: Rosehip },
-    key: '5',
-    text: 'x',
-    value: 'Rosehip'
-},
-    {image: { avatar: true, src: Lilac },
-    key: '6',
-    text: 'x',
-    value: 'Lilac'
-},
-    {image: { avatar: true, src: Yarrow },
-    key: '7',
-    text: 'x',
-    value: 'Yarrow'
-},
-    {image: { avatar: true, src: Rosemary },
-    key: '8',
-    text: 'x',
-    value: 'Rosemary'
-},
-  ]
-
+  const [image, setImage] = useState(empty)
+  const [price, setPrice] = useState(10)
+  const [description, setDes] = useState("A mysterious potion with unknown effects...")
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleForm({ name, image, cost: 5, price, inventory: 0 })
+    handleForm({ name, image, cost: 5, price, inventory: 10, description })
+  }
+
+  const style = {
+    width: '700px'
   }
 
   return (
     <div className="center">
-      <div>
+      <div className="center">
         <Card>
           <ul>
             {potions.map((potion, i) => (
-              <li key={i}> {potion.name} ${potion.price}
+              <li key={i}> <Image avatar src={potion.image}></Image> {potion.name} ${potion.price}
                 { potion.id !== 0 && <button onClick={() => discontinuePotion(potion)}> X </button> }
               </li>
             ))}
@@ -86,19 +43,52 @@ const Menu = ({ handleForm, potions, discontinuePotion, getPotions }) => {
         <h3>Create a Potion!</h3>
         <Form.Field required>
           <label>Image</label>
-          <Dropdown
-            placeholder='Select Image'
-            fluid
-            selection
-            options={imageOptions}
-            onChange={(e, data) => {
-              setImage(data.value)
-            }}
-          />
+          <Popup 
+            on='click'
+            position='right center'
+            style={style}
+            wide='very'
+            trigger={<Image size='medium' src={image} />}
+          >
+            <Grid centered >
+              <Grid.Row columns={4}>
+                <Grid.Column>
+                  <Image src={Echinacea} onClick={e => setImage(e.target.src)}/>
+                </Grid.Column>
+                <Grid.Column>
+                  <Image src={Rosemary} onClick={e => setImage(e.target.src)}/>
+                </Grid.Column>
+                <Grid.Column>
+                  <Image src={Yarrow} onClick={e => setImage(e.target.src)}/>
+                </Grid.Column>
+                <Grid.Column>
+                  <Image src={Elderberry} onClick={e => setImage(e.target.src)}/>
+                </Grid.Column>
+              </Grid.Row>
+              <Grid.Row columns={4}>
+                <Grid.Column>
+                  <Image src={Dandelion} onClick={e => setImage(e.target.src)}/>
+                </Grid.Column>
+                <Grid.Column>
+                  <Image src={Lavender} onClick={e => setImage(e.target.src)}/>
+                </Grid.Column>
+                <Grid.Column>
+                  <Image src={Rosehip} onClick={e => setImage(e.target.src)}/>
+                </Grid.Column>
+                <Grid.Column>
+                  <Image src={Lilac} onClick={e => setImage(e.target.src)}/>
+                </Grid.Column>
+              </Grid.Row>
+            </Grid>
+                        {/* onChange={(e, data) => {
+                        setImage(data.value)
+                          }}> */}
+          </Popup>
         </Form.Field>
         <Form.Field required>
           <label>Name</label>
           <Input
+            error={{ content: 'Please enter a name', pointing: 'below' }}
             type="text"
             name="name"
             placeholder="Name your potion..."
@@ -107,8 +97,19 @@ const Menu = ({ handleForm, potions, discontinuePotion, getPotions }) => {
           />
         </Form.Field>
         <Form.Field required>
+          <label>Description</label>
+          <Input
+            type="text"
+            name="price"
+            placeholder="Describe..."
+            className="input-text"
+            onChange={(e) => setDes(e.target.value)}
+          />
+        </Form.Field>
+        <Form.Field required>
           <label>Price</label>
           <Input
+            error={{ content: 'Please set a price', pointing: 'below' }}
             type="text"
             name="price"
             placeholder="Name your price to make a profit..."
@@ -123,30 +124,6 @@ const Menu = ({ handleForm, potions, discontinuePotion, getPotions }) => {
           className="submit"
         />
       </Form>
-
-
-
-            <div>
-            <Popup wide trigger={
-            <Image size= 'tiny' src={empty} />} on='click'>
-              <Grid divided columns='equal'>
-                <Grid.Column>
-                    <Image size= 'tiny' src={Echinacea} fluid />
-                    <Image size= 'tiny' src={Rosemary} fluid />
-                    <Image size= 'tiny' src={Yarrow} fluid />
-                    <Image size= 'tiny' src={Elderberry} fluid />
-                  </Grid.Column>
-                  <Grid.Column>
-                    <Image size= 'tiny' src={Dandelion} fluid />
-                    <Image size= 'tiny' src={Lavender} fluid />
-                    <Image size= 'tiny' src={Rosehip} fluid />
-                    <Image size= 'tiny' src={Lilac} fluid />
-                  </Grid.Column>
-              </Grid>
-            </Popup>
-            </div>
-
-
     </div>
   );
 }

@@ -7,30 +7,68 @@
       "image": "https://simplybeyondherbs.com/wp-content/uploads/2020/07/Elderflower-liqueur-profile.jpg",
       "description": "A potion used to restore health.",
       "cost": 5,
-      "inventory": 100
+      "inventory": 10
     },
     {
       "name": "Potion",
-      "image": "Elderberry",
+      "image": "http://localhost:3000/static/media/Echinacea.9f614512.jpg",
       "cost": 5,
-      "price": 0,
-      "inventory": 0,
+      "price": 10,
+      "inventory": 10,
+      "description": "A mysterious potion with unknown effects...",
       "id": 1
-    },
-    {
-      "name": "Potion",
-      "image": {
-        "empty": "/static/media/empty.02da33cc.png"
-      },
-      "cost": 5,
-      "price": 0,
-      "inventory": 0,
-      "id": 2
     }
   ],
   "characterClass": [
     "knight",
     "wizard",
     "rogue"
+  ],
+  "bottleImages": [
+    {
+      "id": 0,
+      "name": "Dandelion",
+      "image": "./assets/Dandelion.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Echinacea",
+      "image": "./assets/Echinacea.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Elderberry",
+      "image": "./assets/Elderberry.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Lavender",
+      "image": "./assets/Lavender.jpg"
+    },
+    {
+      "id": 5,
+      "name": "Rosehip",
+      "image": "./assets/Rosehip.jpg"
+    },
+    {
+      "id": 6,
+      "name": "Lilac",
+      "image": "./assets/Lilac.jpg"
+    },
+    {
+      "id": 7,
+      "name": "Yarrow",
+      "image": "./assets/Yarrow.jpg"
+    },
+    {
+      "id": 8,
+      "name": "Rosemary",
+      "image": "./assets/Rosemary.jpg"
+    },
+    {
+      "id": 9,
+      "name": "empty",
+      "image": "./assets/empty.png"
+    }
   ]
 }
