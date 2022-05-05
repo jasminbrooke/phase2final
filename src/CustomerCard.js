@@ -1,34 +1,35 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Button, Card, Image, Icon } from 'semantic-ui-react'
 
-const CustomerCard = ({customer, potions, handleSale, handleX}) => {
-  const {name:{title, first, last}, dob: {age}, picture: {medium}} = customer
-  const [potion, setPotion] = useState({})
-  
-  useEffect(() => {
-    setPotion(potions[Math.floor(Math.random() * potions.length)])
-  }, [])
-  
+const CustomerCard = ({customer, handleSale, handleX, handleTimeout, index}) => {
+  const {name:{title, first, last}, dob: {age}, picture: {thumbnail}, request} = customer
+
+  useEffect(()=>{
+    if(index === 0) {
+      handleTimeout(customer)
+    }
+  }, [last])
+
   return (
     <Card>
       <Card.Content>
         <Image
           floated='right'
-          size='tiny'
-          src={medium}
+          size='mini'
+          src={thumbnail}
         />
-        <Card.Header>{title} {first} {last}</Card.Header>
-        <Card.Meta>Level {age}</Card.Meta>
+        <Card.Header>{first} {last}</Card.Header>
+        <Card.Meta>Level {age} Adventurer</Card.Meta>
         <Card.Description>
-          <Icon name="lab"/> "Give me your strongest <p style={{fontWeight:'bold'}}>{potion.name}!"</p>
+          "Give me your strongest <p style={{fontWeight:'bold'}}>{request.name}!"</p>
         </Card.Description>
       </Card.Content>
       <Card.Content extra>
         <div className='ui two buttons'>
-          <Button basic color='green' onClick={() => handleSale(potion, customer)}>
+          <Button compact size='mini' basic color='green' onClick={() => handleSale(request, customer)}>
             <Icon name="check"/>
           </Button>
-          <Button basic color='red' onClick={() => handleX(customer)}>
+          <Button compact size='mini' basic color='red' onClick={() => handleX(customer)}>
             <Icon name="x" />
           </Button>
         </div>

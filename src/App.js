@@ -12,23 +12,18 @@ function App() {
   const [customers, setCustomers] = useState([])
   const [currentIndex, setCurrentIndex] = useState(4)
   const [customerArray, setCustomerArray] = useState([])
-  const [newCustomer, setNewCustomer] = useState({})
   // const [inventory, setInventory] = useState([{id: 0, count: 5}])
 
-  useEffect(() => {
-    fetch("https://randomuser.me/api/?results=100&inc=name,dob,picture")
-    .then(r => r.json())
-    .then(data => {
-      setCustomers(data.results)
-      setCustomerArray(data.results.slice(0, 5))
-    })
-  }, [])
+  const handleTimeout = (customerID) => {
+    setTimeout(() => { handleX(customerID) }, 3000)
+    clearTimeout(customerID)
+  }
 
   const handleCustomer = (servedCustomer) => {
     let queue = customerArray.filter(customer => customer !== servedCustomer)
     queue.push(customers[currentIndex + 1])
-    setCustomerArray(queue)
     setCurrentIndex(currentIndex + 1)
+    setCustomerArray(queue)
   }
 
   const handleSale = (requestedPotion, customerID) => {
@@ -76,14 +71,24 @@ function App() {
     .then(data => setPotions(data)) 
   }
 
+  const getCustomers = () => {
+    fetch("https://randomuser.me/api/?results=100&inc=name,dob,picture")
+    .then(r => r.json())
+    .then(data => {
+      setCustomers(data.results)
+      setCustomerArray(data.results.slice(0, 5))
+    })
+  }
+
   useEffect(() => {
     getPotions()
+    getCustomers()
   }, [])
 
   return (
     <div>
       <BrowserRouter>
-        <NavBar />
+        <NavBar budget={budget}/>
         <Switch>
           <Route exact path="/menu"
             element={
@@ -98,6 +103,7 @@ function App() {
           <Route exact path="/shopfront"
             element={
               <Shopfront 
+                handleTimeout={handleTimeout}
                 handleSale={handleSale}
                 handleX={handleX}
                 handleBrew={handleBrew}
@@ -108,7 +114,7 @@ function App() {
               />
             }
           />
-          <Route exact path="/" element={ <Intro />}/>
+          <Route exact path="/" element={ <Intro budget={budget}/>}/>
         </Switch>
       </BrowserRouter>
     </div>

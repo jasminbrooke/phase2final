@@ -25,9 +25,13 @@ code {
 
 .center2 {
   margin: auto;
-  width: 90%;
+  width: 95%;
   border: 2px solid #000000;
   padding: 10px;
+}
+
+.hover {
+  cursor:pointer;
 }
 
 #gooey-button {

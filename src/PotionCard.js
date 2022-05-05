@@ -20,14 +20,14 @@ const PotionCard = ({budget, potion, handleBrew, discontinuePotion}) => {
 
     return (
         <Card>
-        <Image src={image} size='small' wrapped ui={false} />
+        <Image floated='right' src={image} size='tiny' wrapped ui={false} />
         <Card.Content>
         <Card.Header> {name}</Card.Header>
         <Card.Meta>
             <span className='cost'>In Stock: {inventory}</span>
         </Card.Meta>
         <Card.Description>
-            {description} Costs ${cost} to brew. Can be sold for ${price}.
+            {description} <p>Costs ${cost} to brew. Can be sold for ${price}.</p>
         </Card.Description>
         </Card.Content>
         <Card.Content extra>

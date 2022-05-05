@@ -1,11 +1,14 @@
 import React from "react";
 
-const Intro = () => {
+const Intro = ({ budget }) => {
     return (
         <div className="center">
-            <p>Customers will come to your shop to ask for potions! </p>
-            <p>Brew a potion, sell a potion. </p>
-            <p>Make enough of a profit to add more potions to your menu.</p>
+            <h3>Welcome to your very own potion shop!</h3>
+            <p>Customers are lining up to buy your potions!</p>
+            <p>Brew potions in your <b>Storefront</b>. </p>
+            <p>Use the <b>Menu</b> page to add new custom items to your selection.</p>
+            <p>Budget wisely!</p>
+            <p>You have ${budget}</p>
         </div>
     )
 }

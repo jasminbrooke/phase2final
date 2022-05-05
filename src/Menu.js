@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Form, Input, Card, Grid, Popup, Image, Select } from 'semantic-ui-react'
+import React, { useState } from "react";
+import { Form, Input, Card, Grid, Popup, Image } from 'semantic-ui-react'
 import Dandelion from "./assets/Dandelion.jpg" 
 import Echinacea from "./assets/Echinacea.jpg"
 import Elderberry from "./assets/Elderberry.jpg"
@@ -12,10 +12,10 @@ import empty from "./assets/empty.png"
 
 
 const Menu = ({ handleForm, potions, discontinuePotion, getPotions }) => {
-  const [name, setName] = useState('Potion')
+  const [name, setName] = useState('Mysterious Potion')
   const [image, setImage] = useState(empty)
   const [price, setPrice] = useState(10)
-  const [description, setDes] = useState("A mysterious potion with unknown effects...")
+  const [description, setDes] = useState("A questionable potion with unknown effects...")
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -29,7 +29,8 @@ const Menu = ({ handleForm, potions, discontinuePotion, getPotions }) => {
   return (
     <div className="center">
       <div className="center">
-        <Card>
+        <Card centered> 
+        <Card.Header> Menu </Card.Header>
           <ul>
             {potions.map((potion, i) => (
               <li key={i}> <Image avatar src={potion.image}></Image> {potion.name} ${potion.price}
@@ -48,41 +49,38 @@ const Menu = ({ handleForm, potions, discontinuePotion, getPotions }) => {
             position='right center'
             style={style}
             wide='very'
-            trigger={<Image size='medium' src={image} />}
+            trigger={<Image className='hover' size='medium' src={image} />}
           >
             <Grid centered >
               <Grid.Row columns={4}>
                 <Grid.Column>
-                  <Image src={Echinacea} onClick={e => setImage(e.target.src)}/>
+                  <Image className='hover' src={Echinacea} onClick={e => setImage(e.target.src)}/>
                 </Grid.Column>
                 <Grid.Column>
-                  <Image src={Rosemary} onClick={e => setImage(e.target.src)}/>
+                  <Image className='hover' src={Rosemary} onClick={e => setImage(e.target.src)}/>
                 </Grid.Column>
                 <Grid.Column>
-                  <Image src={Yarrow} onClick={e => setImage(e.target.src)}/>
+                  <Image className='hover' src={Yarrow} onClick={e => setImage(e.target.src)}/>
                 </Grid.Column>
                 <Grid.Column>
-                  <Image src={Elderberry} onClick={e => setImage(e.target.src)}/>
+                  <Image className='hover' src={Elderberry} onClick={e => setImage(e.target.src)}/>
                 </Grid.Column>
               </Grid.Row>
               <Grid.Row columns={4}>
                 <Grid.Column>
-                  <Image src={Dandelion} onClick={e => setImage(e.target.src)}/>
+                  <Image className='hover' src={Dandelion} onClick={e => setImage(e.target.src)}/>
                 </Grid.Column>
                 <Grid.Column>
-                  <Image src={Lavender} onClick={e => setImage(e.target.src)}/>
+                  <Image className='hover' src={Lavender} onClick={e => setImage(e.target.src)}/>
                 </Grid.Column>
                 <Grid.Column>
-                  <Image src={Rosehip} onClick={e => setImage(e.target.src)}/>
+                  <Image className='hover' src={Rosehip} onClick={e => setImage(e.target.src)}/>
                 </Grid.Column>
                 <Grid.Column>
-                  <Image src={Lilac} onClick={e => setImage(e.target.src)}/>
+                  <Image className='hover' src={Lilac} onClick={e => setImage(e.target.src)}/>
                 </Grid.Column>
               </Grid.Row>
             </Grid>
-                        {/* onChange={(e, data) => {
-                        setImage(data.value)
-                          }}> */}
           </Popup>
         </Form.Field>
         <Form.Field required>
@@ -94,23 +92,24 @@ const Menu = ({ handleForm, potions, discontinuePotion, getPotions }) => {
             placeholder="Name your potion..."
             className="input-text"
             onChange={(e) => setName(e.target.value)}
+
           />
         </Form.Field>
-        <Form.Field required>
+        <Form.Field>
           <label>Description</label>
           <Input
             type="text"
-            name="price"
+            name="desc"
             placeholder="Describe..."
             className="input-text"
             onChange={(e) => setDes(e.target.value)}
           />
         </Form.Field>
-        <Form.Field required>
+        <Form.Field>
           <label>Price</label>
           <Input
             error={{ content: 'Please set a price', pointing: 'below' }}
-            type="text"
+            type="number" min="0" max="10000" step="1"
             name="price"
             placeholder="Name your price to make a profit..."
             className="input-text"
