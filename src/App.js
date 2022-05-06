@@ -10,36 +10,31 @@ function App() {
   const [potions, setPotions] = useState([])
   const [budget, setBudget] = useState(100)
   const [customers, setCustomers] = useState([])
-  const [currentIndex, setCurrentIndex] = useState(4)
+  const [currentIndex, setCurrentIndex] = useState(5)
   const [customerArray, setCustomerArray] = useState([])
-  // const [inventory, setInventory] = useState([{id: 0, count: 5}])
 
-  const handleTimeout = (customerID) => {
-    setTimeout(() => { handleX(customerID) }, 3000)
-    clearTimeout(customerID)
+  const handleCustomer = () => {
+
+    if(customers[currentIndex + 5]) {
+      setCustomerArray(customers.slice(currentIndex, currentIndex + 5))
+      // queue.push(customers[currentIndex + 1])
+      setCurrentIndex(currentIndex + 5)
+    } else{
+    // setCustomerArray(queue)
+    // if(queue.length === 0) {
+      alert("No more customers!")
+    }
   }
 
-  const handleCustomer = (servedCustomer) => {
-    let queue = customerArray.filter(customer => customer !== servedCustomer)
-    queue.push(customers[currentIndex + 1])
-    setCurrentIndex(currentIndex + 1)
-    setCustomerArray(queue)
-  }
-
-  const handleSale = (requestedPotion, customerID) => {
+  const handleSale = (requestedPotion) => {
     const stock = potions.find(ptn => ptn.id === requestedPotion.id).inventory
     if (stock >= 1) {
       const updatedPotions = potions.map(potion => potion.id === requestedPotion.id ? {...potion, inventory: potion.inventory - 1} : potion)
       setPotions(updatedPotions)
       setBudget(budget + requestedPotion.price)
-      handleCustomer(customerID)
     } else {
       alert("Sold out!")
     }
-  }
-
-  const handleX = (customerID) => {
-    handleCustomer(customerID)
   }
 
   const discontinuePotion = (potion) => {
@@ -72,7 +67,7 @@ function App() {
   }
 
   const getCustomers = () => {
-    fetch("https://randomuser.me/api/?results=100&inc=name,dob,picture")
+    fetch("https://randomuser.me/api/?results=5&inc=name,dob,picture")
     .then(r => r.json())
     .then(data => {
       setCustomers(data.results)
@@ -103,9 +98,8 @@ function App() {
           <Route exact path="/shopfront"
             element={
               <Shopfront 
-                handleTimeout={handleTimeout}
                 handleSale={handleSale}
-                handleX={handleX}
+                handleCustomer={handleCustomer}
                 handleBrew={handleBrew}
                 discontinuePotion={discontinuePotion}
                 potions={potions}

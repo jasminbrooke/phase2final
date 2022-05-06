@@ -19,7 +19,7 @@ const Menu = ({ handleForm, potions, discontinuePotion, getPotions }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleForm({ name, image, cost: 5, price, inventory: 10, description })
+    handleForm({ name, image, cost: 5, price, inventory: 5, description })
   }
 
   const style = {
@@ -113,7 +113,7 @@ const Menu = ({ handleForm, potions, discontinuePotion, getPotions }) => {
             name="price"
             placeholder="Name your price to make a profit..."
             className="input-text"
-            onChange={(e) => setPrice(e.target.value)}
+            onChange={(e) => setPrice(parseInt(e.target.value))}
           />
         </Form.Field>
         <input

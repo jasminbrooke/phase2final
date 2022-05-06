@@ -10,92 +10,36 @@
       "inventory": 10
     },
     {
-      "name": "Yummy Potion",
-      "image": "http://localhost:3000/static/media/Yarrow.0a034282.jpg",
-      "cost": 5,
-      "price": 10,
-      "inventory": 10,
-      "description": "A questionable potion with unknown effects...",
-      "id": 3
-    },
-    {
-      "name": "Mysterious Potion",
+      "name": "Pretty Potion",
       "image": "http://localhost:3000/static/media/Echinacea.9f614512.jpg",
       "cost": 5,
       "price": 10,
-      "inventory": 10,
+      "inventory": 5,
       "description": "A questionable potion with unknown effects...",
-      "id": 4
+      "id": 1
     },
     {
-      "name": "Mysterious Potion",
+      "name": "Happy Potion",
       "image": "http://localhost:3000/static/media/Dandelion.3e33848e.jpg",
       "cost": 5,
-      "price": 10,
-      "inventory": 10,
+      "price": 100,
+      "inventory": 5,
       "description": "A questionable potion with unknown effects...",
-      "id": 5
+      "id": 2
     },
     {
-      "name": "Tom",
-      "image": "http://localhost:3000/static/media/Lilac.1e56af22.jpg",
+      "name": "Sweet Potion",
+      "image": "http://localhost:3000/static/media/Yarrow.0a034282.jpg",
       "cost": 5,
-      "price": "1",
-      "inventory": 10,
-      "description": "Hello",
-      "id": 6
+      "price": 100,
+      "inventory": 5,
+      "description": "A questionable potion with unknown effects...",
+      "id": 3
     }
   ],
   "build": [
-    "knight",
-    "wizard",
-    "rogue"
-  ],
-  "bottleImages": [
-    {
-      "id": 0,
-      "name": "Dandelion",
-      "image": "./assets/Dandelion.jpg"
-    },
-    {
-      "id": 2,
-      "name": "Echinacea",
-      "image": "./assets/Echinacea.jpg"
-    },
-    {
-      "id": 3,
-      "name": "Elderberry",
-      "image": "./assets/Elderberry.jpg"
-    },
-    {
-      "id": 4,
-      "name": "Lavender",
-      "image": "./assets/Lavender.jpg"
-    },
-    {
-      "id": 5,
-      "name": "Rosehip",
-      "image": "./assets/Rosehip.jpg"
-    },
-    {
-      "id": 6,
-      "name": "Lilac",
-      "image": "./assets/Lilac.jpg"
-    },
-    {
-      "id": 7,
-      "name": "Yarrow",
-      "image": "./assets/Yarrow.jpg"
-    },
-    {
-      "id": 8,
-      "name": "Rosemary",
-      "image": "./assets/Rosemary.jpg"
-    },
-    {
-      "id": 9,
-      "name": "empty",
-      "image": "./assets/empty.png"
-    }
+    "Knight",
+    "Mage",
+    "Rogue"
   ]
 }
