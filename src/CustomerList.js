@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Card } from 'semantic-ui-react'
 import CustomerCard from "./CustomerCard"
 
-const CustomerList = ({potions, handleCustomer, handleSale, customerArray}) => {
+const CustomerList = ({potions, handleCustomer, handleSale, customerArray, handleCount}) => {
     const [builds, setbuilds] = useState([])
 
     useEffect(() => {
@@ -22,7 +22,7 @@ const CustomerList = ({potions, handleCustomer, handleSale, customerArray}) => {
         <Card.Group itemsPerRow="5">
             {
                 customerArray.map((customer, i) => 
-                    <CustomerCard handleCustomer={handleCustomer} handleSale={handleSale} key={i} customer={customer} />
+                    <CustomerCard handleCustomer={handleCustomer} handleSale={handleSale} key={i} customer={customer} handleCount={handleCount}/>
                 )
             }
         </Card.Group>

@@ -7,34 +7,16 @@
       "image": "https://simplybeyondherbs.com/wp-content/uploads/2020/07/Elderflower-liqueur-profile.jpg",
       "description": "A potion used to restore health.",
       "cost": 5,
-      "inventory": 10
+      "inventory": 5
     },
     {
-      "name": "Pretty Potion",
-      "image": "http://localhost:3000/static/media/Echinacea.9f614512.jpg",
+      "name": "Mysterious Potion",
+      "image": "/static/media/empty.02da33cc.png",
       "cost": 5,
       "price": 10,
       "inventory": 5,
       "description": "A questionable potion with unknown effects...",
       "id": 1
-    },
-    {
-      "name": "Happy Potion",
-      "image": "http://localhost:3000/static/media/Dandelion.3e33848e.jpg",
-      "cost": 5,
-      "price": 100,
-      "inventory": 5,
-      "description": "A questionable potion with unknown effects...",
-      "id": 2
-    },
-    {
-      "name": "Sweet Potion",
-      "image": "http://localhost:3000/static/media/Yarrow.0a034282.jpg",
-      "cost": 5,
-      "price": 100,
-      "inventory": 5,
-      "description": "A questionable potion with unknown effects...",
-      "id": 3
     }
   ],
   "build": [

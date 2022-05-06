@@ -1,21 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Card, Image, Icon } from 'semantic-ui-react'
 import Coins from "./assets/Coins.jpg";
-import Reject from "./assets/Reject.png";
+import Sad from "./assets/Sad.jpg";
 
-const CustomerCard = ({customer, handleSale, handleCustomer}) => {
+const CustomerCard = ({customer, handleSale, handleCount}) => {
   const {name:{first, last}, dob: {age}, picture: {thumbnail}, request, build} = customer
-  const [rejected, setRejected] = useState(false)
   const [served, setServed] = useState(false)
+  const [soldout, setSoldout] = useState(false)
+
+  useEffect(() => {
+    setServed(false)
+    setSoldout(false)
+  }, [customer])
 
   const handleCheck = () => {
-    setServed(true)
-    handleSale(request, customer)
+    if(request.inventory === 0) {
+      setSoldout(true)
+      handleCount()}
+    else {
+      setSoldout(false)
+      setServed(true)
+      handleSale(request, customer)
+      handleCount()}
   }
 
-  const handleReject = () => {
-    setRejected(true)
-  }
   const renderContent = (() => {
     if(served) {
       return (
@@ -25,18 +33,23 @@ const CustomerCard = ({customer, handleSale, handleCustomer}) => {
           size='tiny'
           src={Coins}
         />
-        <Card.Header>Thank you!</Card.Header>
+        <Card.Header>"Thank you!"</Card.Header>
         <Card.Meta>+${request.price}</Card.Meta>
         </>
       )
     }
-    else if(rejected) {
+    else if (soldout)
+    {
       return (
+        <>
         <Image
           floated='right'
-          size='mini'
-          src={Reject}
+          size='tiny'
+          src={Sad}
         />
+        <Card.Header>"Aww... that's what I came for..."</Card.Header>
+        <Card.Meta>+0</Card.Meta>
+        </>
       )
     }
     else {
@@ -64,12 +77,12 @@ const CustomerCard = ({customer, handleSale, handleCustomer}) => {
       </Card.Content>
       <Card.Content extra>
         <div className='ui two buttons'>
-          <Button disabled={served || rejected} compact size='mini' basic color='green' onClick={() => handleCheck()}>
+          <Button disabled={served || soldout} compact size='mini' basic color='green' onClick={() => handleCheck()}>
             <Icon name="check"/>
           </Button>
-          <Button disabled={served || rejected} compact size='mini' basic color='red' onClick={() => handleReject()}>
+          {/* <Button disabled={served || rejected} compact size='mini' basic color='red' onClick={() => handleReject()}>
             <Icon name="x" />
-          </Button>
+          </Button> */}
         </div>
       </Card.Content>
     </Card>

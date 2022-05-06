@@ -12,10 +12,14 @@ function App() {
   const [customers, setCustomers] = useState([])
   const [currentIndex, setCurrentIndex] = useState(5)
   const [customerArray, setCustomerArray] = useState([])
+  const [count, setCount] = useState(0)
+
+  const handleCount = () => setCount(count +1)
 
   const handleCustomer = () => {
-
-    if(customers[currentIndex + 5]) {
+    console.log(customers, currentIndex)
+    // debugger
+    if(customers[currentIndex + 4]) {
       setCustomerArray(customers.slice(currentIndex, currentIndex + 5))
       // queue.push(customers[currentIndex + 1])
       setCurrentIndex(currentIndex + 5)
@@ -67,7 +71,7 @@ function App() {
   }
 
   const getCustomers = () => {
-    fetch("https://randomuser.me/api/?results=5&inc=name,dob,picture")
+    fetch("https://randomuser.me/api/?results=25&inc=name,dob,picture")
     .then(r => r.json())
     .then(data => {
       setCustomers(data.results)
@@ -79,6 +83,12 @@ function App() {
     getPotions()
     getCustomers()
   }, [])
+
+  useEffect(() => {
+    if(count > 0 && count % 5 === 0) {
+      handleCustomer()
+    }
+  }, [count])
 
   return (
     <div>
@@ -102,6 +112,7 @@ function App() {
                 handleCustomer={handleCustomer}
                 handleBrew={handleBrew}
                 discontinuePotion={discontinuePotion}
+                handleCount={handleCount}
                 potions={potions}
                 budget={budget}
                 customerArray={customerArray}
