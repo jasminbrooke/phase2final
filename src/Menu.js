@@ -11,7 +11,7 @@ import Yarrow from "./assets/Yarrow.jpg"
 import empty from "./assets/empty.png"
 
 
-const Menu = ({ handleForm, potions, discontinuePotion, getPotions }) => {
+const Menu = ({ handleForm, potions, discontinuePotion }) => {
   const [name, setName] = useState('Mysterious Potion')
   const [image, setImage] = useState(empty)
   const [price, setPrice] = useState(10)
@@ -42,6 +42,7 @@ const Menu = ({ handleForm, potions, discontinuePotion, getPotions }) => {
       </div>
       <Form widths='equal' onSubmit={(e) => handleSubmit(e)}>
         <h3>Create a Potion!</h3>
+        <p>Create Up To 3 Additional Potions</p>
         <Form.Field required>
           <label>Image</label>
           <Popup 
@@ -86,7 +87,6 @@ const Menu = ({ handleForm, potions, discontinuePotion, getPotions }) => {
         <Form.Field required>
           <label>Name</label>
           <Input
-            error={{ content: 'Please enter a name', pointing: 'below' }}
             type="text"
             name="name"
             placeholder="Name your potion..."
@@ -108,7 +108,8 @@ const Menu = ({ handleForm, potions, discontinuePotion, getPotions }) => {
         <Form.Field>
           <label>Price</label>
           <Input
-            error={{ content: 'Please set a price', pointing: 'below' }}
+            // error={{ content: 'Please set a price', pointing: 'below' }}
+            error
             type="number" min="0" max="10000" step="1"
             name="price"
             placeholder="Name your price to make a profit..."
@@ -121,6 +122,7 @@ const Menu = ({ handleForm, potions, discontinuePotion, getPotions }) => {
           name="submit"
           value="Create New Potion Menu Item"
           className="submit"
+          disabled={potions.length === 4}
         />
       </Form>
     </div>

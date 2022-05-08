@@ -3,25 +3,27 @@ import { Button, Card, Image, Icon } from 'semantic-ui-react'
 import Coins from "./assets/Coins.jpg";
 import Sad from "./assets/Sad.jpg";
 
-const CustomerCard = ({customer, handleSale, handleCount}) => {
+const CustomerCard = ({customer, handleSale, handleCount, potions}) => {
   const {name:{first, last}, dob: {age}, picture: {thumbnail}, request, build} = customer
   const [served, setServed] = useState(false)
   const [soldout, setSoldout] = useState(false)
-
+  
   useEffect(() => {
     setServed(false)
     setSoldout(false)
   }, [customer])
 
   const handleCheck = () => {
-    if(request.inventory === 0) {
+    const requestedPotion = potions.find(ptn => ptn.id === request.id)
+    if(!requestedPotion || requestedPotion.inventory === 0) {
       setSoldout(true)
-      handleCount()}
+    }
     else {
       setSoldout(false)
       setServed(true)
-      handleSale(request, customer)
-      handleCount()}
+    }
+    handleSale(request, customer)
+    handleCount()
   }
 
   const renderContent = (() => {
@@ -38,7 +40,7 @@ const CustomerCard = ({customer, handleSale, handleCount}) => {
         </>
       )
     }
-    else if (soldout)
+    else if(soldout)
     {
       return (
         <>

@@ -8,15 +8,6 @@
       "description": "A potion used to restore health.",
       "cost": 5,
       "inventory": 5
-    },
-    {
-      "name": "Mysterious Potion",
-      "image": "/static/media/empty.02da33cc.png",
-      "cost": 5,
-      "price": 10,
-      "inventory": 5,
-      "description": "A questionable potion with unknown effects...",
-      "id": 1
     }
   ],
   "build": [
