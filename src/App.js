@@ -21,7 +21,7 @@ function App() {
       setCustomerArray(customers.slice(currentIndex, currentIndex + 5))
       setCurrentIndex(currentIndex + 5)
     } else {
-      alert("No more customers!")
+      alert("!!! No more customers! Final Score:" + `${budget}` + "!!!")
     }
   }
 
@@ -38,6 +38,9 @@ function App() {
     }
   }
 
+
+
+
   const discontinuePotion = (potion) => {
     fetch(`http://localhost:3001/potions/${potion.id}`, {
       method: "DELETE",
@@ -46,10 +49,21 @@ function App() {
       .then(() => setPotions(potions.filter(p => p.id !== potion.id)))
   }
 
-  const handleBrew = (requestedPotion) => {
-    const updatedPotions = potions.map(potion => potion.id === requestedPotion.id ? { ...potion, inventory: potion.inventory + 1 } : potion)
-    setPotions(updatedPotions)
+  const handleBrew = (requestedPotion) => {   
     setBudget(budget - requestedPotion.cost)
+    fetch(`http://localhost:3001/potions/${requestedPotion.id}`, {
+      method: "PATCH",  
+      headers: {    
+        "Content-type": "application/json"  
+      },  
+      body: JSON.stringify({
+        inventory: requestedPotion.inventory + 1
+      }),
+    }) 
+    .then(() => {
+        const updatedPotions = potions.map(potion => potion.id === requestedPotion.id ? { ...potion, inventory: potion.inventory + 1 } : potion)
+        setPotions(updatedPotions)
+    })
   }
 
   const handleForm = (newPotion) => {
@@ -68,7 +82,7 @@ function App() {
   }
 
   const getCustomers = () => {
-    fetch("https://randomuser.me/api/?results=50&inc=name,dob,picture")
+    fetch("https://randomuser.me/api/?results=20&inc=name,dob,picture")
       .then(r => r.json())
       .then(data => {
         setCustomers(data.results)

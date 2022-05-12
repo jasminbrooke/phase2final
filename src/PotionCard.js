@@ -20,7 +20,7 @@ const PotionCard = ({budget, potion, handleBrew, discontinuePotion}) => {
 
     return (
         <Card>
-        <Image floated='right' src={image} size='tiny' wrapped ui={false} />
+        <Image floated='right' src={image} size='small' wrapped ui={false} />
         <Card.Content>
         <Card.Header> {name}</Card.Header>
         <Card.Meta>
@@ -46,7 +46,7 @@ const PotionCard = ({budget, potion, handleBrew, discontinuePotion}) => {
             <span className="bubble"></span>
             </span>
             </Button>
-            {id !== 0  && <Button onClick={() => discontinuePotion(potion)}>Discontinue</Button>}
+            {id !== 0  && <Button id="disco-button" onClick={() => discontinuePotion(potion)}>Discontinue</Button>}
         </a>
         </Card.Content>
         </Card>
