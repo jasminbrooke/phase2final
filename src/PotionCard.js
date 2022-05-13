@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Card, Image, Icon } from 'semantic-ui-react'
  
-const PotionCard = ({budget, potion, handleBrew, discontinuePotion}) => {
+const PotionCard = ({budget, potion, handleBrew, discontinuePotion, handleModal}) => {
     const {id, image, name, cost, description, inventory, price} = potion
     const [disabled, setDisabled] = useState(false)
  
@@ -10,9 +10,7 @@ const PotionCard = ({budget, potion, handleBrew, discontinuePotion}) => {
 
     const handleClick = (potion) => {
         if (potion.cost > budget) {
-            // setModalText("Not enough money!")
-            // setOpen(true)
-            alert("no!")
+            handleModal("Not enough money to brew!")
         } else {
             setDisabled(true)
             setTimeout(() => { setDisabled(false)}, 3000)

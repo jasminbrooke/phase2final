@@ -19,13 +19,17 @@ function App() {
 
   const handleCount = () => setCount(count + 1)
 
+  const handleModal = (text) => {
+    setModalText(text)
+    setOpen(true)
+  }
+
   const handleCustomer = () => {
     if (customers[currentIndex + 4]) {
       setCustomerArray(customers.slice(currentIndex, currentIndex + 5))
       setCurrentIndex(currentIndex + 5)
     } else {
-      setModalText("!!! No more customers! Final Score:" + `${budget}` + "!!!")
-      setOpen(true)
+      handleModal("!!! No more customers! Final Score:" + `${budget}` + "!!!")
     }
   }
 
@@ -37,8 +41,7 @@ function App() {
       setBudget(budget + requestedPotion.price)
     }
     else {
-      setModalText("Sold Out!")
-      setOpen(true)
+      handleModal("Sold Out!")
     }
   }
 
@@ -127,6 +130,7 @@ function App() {
                 handleBrew={handleBrew}
                 discontinuePotion={discontinuePotion}
                 handleCount={handleCount}
+                handleModal={handleModal}
                 potions={potions}
                 budget={budget}
                 customerArray={customerArray}
