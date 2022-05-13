@@ -15,6 +15,7 @@ function App() {
   const [customerArray, setCustomerArray] = useState([])
   const [count, setCount] = useState(0)
   const [open, setOpen] = useState(false)
+  const [modalText, setModalText] = useState('')
 
   const handleCount = () => setCount(count + 1)
 
@@ -23,7 +24,8 @@ function App() {
       setCustomerArray(customers.slice(currentIndex, currentIndex + 5))
       setCurrentIndex(currentIndex + 5)
     } else {
-      alert("!!! No more customers! Final Score:" + `${budget}` + "!!!")
+      setModalText("!!! No more customers! Final Score:" + `${budget}` + "!!!")
+      setOpen(true)
     }
   }
 
@@ -35,8 +37,8 @@ function App() {
       setBudget(budget + requestedPotion.price)
     }
     else {
+      setModalText("Sold Out!")
       setOpen(true)
-      // alert("Sold out!")
     }
   }
 
@@ -134,7 +136,7 @@ function App() {
           <Route exact path="/" element={<Intro budget={budget} />} />
         </Switch>
       </BrowserRouter>
-      <AlertModal open={open} setOpen={setOpen}/>
+      <AlertModal open={open} setOpen={setOpen} text={modalText}/>
     </div>
   );
 }
