@@ -42,7 +42,7 @@ function App() {
 
 
   const discontinuePotion = (potion) => {
-    fetch(`http://localhost:3001/potions/${potion.id}`, {
+    fetch(`https://phase2-db.herokuapp.com/potions/${potion.id}`, {
       method: "DELETE",
       headers: { 'Content-type': 'application/json' }
     })
@@ -51,7 +51,7 @@ function App() {
 
   const handleBrew = (requestedPotion) => {   
     setBudget(budget - requestedPotion.cost)
-    fetch(`http://localhost:3001/potions/${requestedPotion.id}`, {
+    fetch(`https://phase2-db.herokuapp.com/potions/${requestedPotion.id}`, {
       method: "PATCH",  
       headers: {    
         "Content-type": "application/json"  
@@ -67,7 +67,7 @@ function App() {
   }
 
   const handleForm = (newPotion) => {
-    fetch("http://localhost:3001/potions", {
+    fetch("https://phase2-db.herokuapp.com/potions", {
       method: 'POST',
       headers: { 'content-Type': 'application/json' },
       body: JSON.stringify(newPotion)
@@ -76,7 +76,7 @@ function App() {
   }
 
   const getPotions = () => {
-    fetch("http://localhost:3001/potions")
+    fetch("https://phase2-db.herokuapp.com/potions")
       .then(r => r.json())
       .then(data => setPotions(data))
   }

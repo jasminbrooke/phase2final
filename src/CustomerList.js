@@ -6,7 +6,7 @@ const CustomerList = ({potions, handleSale, customerArray, handleCount}) => {
     const [builds, setbuilds] = useState([])
 
     useEffect(() => {
-        fetch("http://localhost:3001/build")
+        fetch("https://phase2-db.herokuapp.com/build")
         .then(r => r.json())
         .then(data => setbuilds(data))
     }, []);
