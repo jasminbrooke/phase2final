@@ -9,13 +9,15 @@ const PotionCard = ({budget, potion, handleBrew, discontinuePotion}) => {
 
 
     const handleClick = (potion) => {
-        if (potion.cost < budget) {
-        setDisabled(true)
-        setTimeout(() => { setDisabled(false)}, 3000)
+        if (potion.cost > budget) {
+            // setModalText("Not enough money!")
+            // setOpen(true)
+            alert("no!")
         } else {
-            alert("Not enough money!")
+            setDisabled(true)
+            setTimeout(() => { setDisabled(false)}, 3000)
+            handleBrew(potion);
         }
-        handleBrew(potion);
     }
 
     return (

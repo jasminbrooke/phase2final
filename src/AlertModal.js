@@ -4,6 +4,8 @@ import { Button, Modal } from 'semantic-ui-react'
 function AlertModal({open, setOpen, text}) {
   return (
     <Modal
+      dimmer='blurring'
+      size='mini'
       open={open}
     >
       <Modal.Content image>
