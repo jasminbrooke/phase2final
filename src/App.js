@@ -5,6 +5,7 @@ import Menu from "./Menu";
 import NavBar from "./NavBar";
 import Shopfront from "./Shopfront";
 import Intro from "./Intro";
+import AlertModal from "./AlertModal"
 
 function App() {
   const [potions, setPotions] = useState([])
@@ -13,6 +14,7 @@ function App() {
   const [currentIndex, setCurrentIndex] = useState(5)
   const [customerArray, setCustomerArray] = useState([])
   const [count, setCount] = useState(0)
+  const [open, setOpen] = useState(false)
 
   const handleCount = () => setCount(count + 1)
 
@@ -33,8 +35,8 @@ function App() {
       setBudget(budget + requestedPotion.price)
     }
     else {
-      console.log('sold out')
-      alert("Sold out!")
+      setOpen(true)
+      // alert("Sold out!")
     }
   }
 
@@ -132,6 +134,7 @@ function App() {
           <Route exact path="/" element={<Intro budget={budget} />} />
         </Switch>
       </BrowserRouter>
+      <AlertModal open={open} setOpen={setOpen}/>
     </div>
   );
 }
