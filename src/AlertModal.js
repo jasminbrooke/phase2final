@@ -6,6 +6,11 @@ function AlertModal({open, setOpen}) {
     <Modal
       open={open}
     >
+      <Modal.Content image>
+        <Modal.Description>
+          <p>Sold Out!</p>
+        </Modal.Description>
+      </Modal.Content>
       <Modal.Actions>
         <Button color='black' onClick={() => setOpen(false)}>
           OK!
