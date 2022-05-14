@@ -14,7 +14,7 @@ const CustomerCard = ({customer, handleSale, handleCount, potions}) => {
   }, [customer])
 
   const handleCheck = () => {
-    const requestedPotion = potions.find(ptn => ptn.id === request.id)
+    const requestedPotion = potions.find(ptn => ptn.id === request?.id)
     if(!requestedPotion || requestedPotion.inventory === 0) {
       setSoldout(true)
     }
@@ -36,7 +36,7 @@ const CustomerCard = ({customer, handleSale, handleCount, potions}) => {
           src={Coins}
         />
         <Card.Header>"Thank you!"</Card.Header>
-        <Card.Meta>+${request.price}</Card.Meta>
+        <Card.Meta>+${request?.price}</Card.Meta>
         </>
       )
     }
@@ -65,7 +65,7 @@ const CustomerCard = ({customer, handleSale, handleCount, potions}) => {
           <Card.Header>{first} {last}</Card.Header>
           <Card.Meta>Level {age} {build}</Card.Meta>
           <Card.Description>
-            "Give me your strongest <p style={{fontWeight:'bold'}}>{request.name}!"</p>
+            "Give me your strongest <p style={{fontWeight:'bold'}}>{request?.name}!"</p>
           </Card.Description>
         </>
       )

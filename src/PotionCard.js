@@ -4,9 +4,6 @@ import { Button, Card, Image, Icon } from 'semantic-ui-react'
 const PotionCard = ({budget, potion, handleBrew, discontinuePotion, handleModal}) => {
     const {id, image, name, cost, description, inventory, price} = potion
     const [disabled, setDisabled] = useState(false)
- 
-    // const [budget, setBudget] = useState(100)
-
 
     const handleClick = (potion) => {
         if (potion.cost > budget) {
@@ -31,7 +28,6 @@ const PotionCard = ({budget, potion, handleBrew, discontinuePotion, handleModal}
         </Card.Description>
         </Card.Content>
         <Card.Content extra>
-        <a>
             <Button id="gooey-button" disabled={disabled} onClick={() => handleClick(potion)}><Icon name='lab' />Brew
             <span className="bubbles">
             <span className="bubble"></span>
@@ -47,7 +43,6 @@ const PotionCard = ({budget, potion, handleBrew, discontinuePotion, handleModal}
             </span>
             </Button>
             {id !== 0  && <Button id="disco-button" onClick={() => discontinuePotion(potion)}>Discontinue</Button>}
-        </a>
         </Card.Content>
         </Card>
     )

@@ -29,7 +29,7 @@ function App() {
       setCustomerArray(customers.slice(currentIndex, currentIndex + 5))
       setCurrentIndex(currentIndex + 5)
     } else {
-      handleModal("!!! No more customers! Final Score:" + `${budget}` + "!!!")
+      handleModal(`!!! No more customers! Final Score: ${budget}!!!`)
     }
   }
 
@@ -44,9 +44,6 @@ function App() {
       handleModal("Sold Out!")
     }
   }
-
-
-
 
   const discontinuePotion = (potion) => {
     fetch(`https://phase2-db.herokuapp.com/potions/${potion.id}`, {
@@ -82,19 +79,17 @@ function App() {
       .then(() => getPotions())
   }
 
-  const getPotions = () => {
-    fetch("https://phase2-db.herokuapp.com/potions")
-      .then(r => r.json())
-      .then(data => setPotions(data))
+  const getPotions = async () => {
+    const response = await fetch("https://phase2-db.herokuapp.com/potions")
+    const potionData = await response.json()
+    setPotions(potionData)
   }
 
-  const getCustomers = () => {
-    fetch("https://randomuser.me/api/?results=20&inc=name,dob,picture")
-      .then(r => r.json())
-      .then(data => {
-        setCustomers(data.results)
-        setCustomerArray(data.results.slice(0, 5))
-      })
+  const getCustomers = async () => {
+    const response = await fetch("https://randomuser.me/api/?results=20&inc=name,dob,picture")
+    const customerData = await response.json()
+    setCustomers(customerData.results)
+    setCustomerArray(customerData.results.slice(0, 5))
   }
 
   useEffect(() => {
