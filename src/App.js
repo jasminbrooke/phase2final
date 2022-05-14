@@ -17,6 +17,25 @@ function App() {
   const [open, setOpen] = useState(false)
   const [modalText, setModalText] = useState('')
 
+  const resetDB = () => {
+    potions.forEach(ptn => {
+      if (ptn.id !== 0) {
+        fetch(`https://phase2-db.herokuapp.com/potions/${ptn.id}`, {
+          method: "DELETE",
+          headers: { 'Content-type': 'application/json' }
+        })
+      }
+    })
+    fetch("https://phase2-db.herokuapp.com/potions/0", {  
+      method: "PATCH",  
+      headers: { "Content-type": "application/json" },  
+      body: JSON.stringify({   
+        inventory: 4 
+      })
+    })
+    .then(() => getPotions())
+  }
+
   const handleCount = () => setCount(count + 1)
 
   const handleModal = (text) => {
@@ -132,7 +151,7 @@ function App() {
               />
             }
           />
-          <Route exact path="/" element={<Intro budget={budget} />} />
+          <Route exact path="/" element={<Intro resetDB={resetDB} budget={budget} setBudget={setBudget} />} />
         </Switch>
       </BrowserRouter>
       <AlertModal open={open} setOpen={setOpen} text={modalText}/>
