@@ -55,7 +55,7 @@ const Menu = ({ handleForm, potions, discontinuePotion }) => {
             <Grid centered >
               <Grid.Row columns={4}>
                 <Grid.Column>
-                  <Image className='hover' src={Echinacea} onClick={e => setImage(e.target.src)}/>
+                  <Image className='hover' src={Echinacea} onClick={e => {setImage(e.target.src)}}/>
                 </Grid.Column>
                 <Grid.Column>
                   <Image className='hover' src={Rosemary} onClick={e => setImage(e.target.src)}/>
@@ -92,7 +92,6 @@ const Menu = ({ handleForm, potions, discontinuePotion }) => {
             placeholder="Name your potion..."
             className="input-text"
             onChange={(e) => setName(e.target.value)}
-
           />
         </Form.Field>
         <Form.Field>
@@ -108,7 +107,6 @@ const Menu = ({ handleForm, potions, discontinuePotion }) => {
         <Form.Field>
           <label>Price</label>
           <Input
-            // error={{ content: 'Please set a price', pointing: 'below' }}
             error
             type="number" min="0" max="10000" step="1"
             name="price"

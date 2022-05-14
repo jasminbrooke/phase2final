@@ -82,9 +82,6 @@ const CustomerCard = ({customer, handleSale, handleCount, potions}) => {
           <Button disabled={served || soldout} compact size='mini' basic color='green' onClick={() => handleCheck()}>
             <Icon name="check"/>
           </Button>
-          {/* <Button disabled={served || rejected} compact size='mini' basic color='red' onClick={() => handleReject()}>
-            <Icon name="x" />
-          </Button> */}
         </div>
       </Card.Content>
     </Card>

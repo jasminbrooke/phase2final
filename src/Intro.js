@@ -13,7 +13,7 @@ const Intro = ({ budget, resetDB, setBudget }) => {
         setTimeout(() => { 
             setShowBubbles(false)
             setDisabled(false)
-        }, 3500)
+        }, 3300)
     }
 
     return (
